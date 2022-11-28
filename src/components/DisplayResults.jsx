@@ -89,7 +89,7 @@ function DisplayResults() {
                                           // filtering the last item if the remainder notification isn't displayed
                                           // to correct some rect angles in the element.
                                           index === dataFilter.slice(0,5).length-1 && dataFilter.length - 5 < 5  ?
-                                        {borderRadius: "16px 16px 0px 0px;"}
+                                        {backgroundColor: "#fafafa", borderRadius: "0px 0px 16px 16px"}
                                         :
 
                                         (index % 2) ?
@@ -124,7 +124,7 @@ function DisplayResults() {
 
                               // If we've various countries, then, display just five and show the reminder.
                               searchedCountry.length > 0 && dataFilter.length > 1 && (dataFilter.length - 5) > 0 ?
-                                <p className='remainder-notification'>and {dataFilter.length - 5} more.</p>
+                                <p style={{margin: 0, backgroundColor:  "#fafafa", borderRadius: "0px 0px 16px 16px"}} className='remainder-notification'>and {dataFilter.length - 5} more.</p>
                                :
                                undefined
                                }
