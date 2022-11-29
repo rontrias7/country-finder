@@ -48,6 +48,10 @@
   border-radius: 16px 16px 0px 0px;
 }
 
+.input-search::placeholder {
+  opacity: 0.5;
+}
+
 .matching-text {
   color: #175be2;
 }
@@ -90,4 +94,17 @@ hr {
 
 img {
   border-radius: 16px;
+}
+
+.country-item:hover {
+  background-color: rgb(240, 240, 240) !important;
+}
+
+.close-country {
+  position: absolute;
+  color: gray;
+  size: 20px;
+  top: 14ch;
+  left: clamp(75%, 77%, 80%);
+  z-index: 4;
 }

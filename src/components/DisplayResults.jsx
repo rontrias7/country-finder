@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {motion, AnimatePresence} from 'framer-motion'
+import { MdClose } from 'react-icons/md';
 
 
-
+const inputCountry = document.querySelectorAll('.input-search')[0];
 
 
 function DisplayResults() {
 
-  const [countries, setCountries] = useState([]);
-  const [searchedCountry, setsearchedCountry] = useState('');
 
+  const [countries, setCountries] = useState([]);
+  const [searchedCountry, setSearchedCountry] = useState('');
+  let clicked = false;
 
     useEffect(() => {
 
@@ -22,23 +24,47 @@ function DisplayResults() {
 
       })
       },
-      []);
+      [clicked]);
 
       function toggleSearch(e) {
-        setsearchedCountry(e.target.value)
+        setSearchedCountry(e.target.value)
+
+      }
+
+      function selectCountry(country) {
+
+          //setCountries([countries.name.common[e.target.value]]);
+          console.log('clicked')
+          console.log(country);
+          setSearchedCountry(country.name.common);
+
+
 
       }
 
 
+
+      function closeAndBack(){
+
+        clicked = !clicked;
+        console.log(clicked,countries);
+        setSearchedCountry('');
+        inputCountry.value = '';
+
+      }
 
 
       let dataFilter = countries.filter( country => country.name["common"].toLowerCase().startsWith(searchedCountry.toLowerCase()));
       console.log(dataFilter);
 
 
+
+
   return (
     <div className="results" >
-        <input className="input-search" value={searchedCountry} onChange={toggleSearch} />
+        {searchedCountry? <i
+        className="close-country" onClick={closeAndBack}><MdClose/></i>: undefined}
+        <input className="input-search" value={searchedCountry} onChange={toggleSearch}placeholder="e.g. Uruguay" autoFocus/>
         <div className="results-list">
         <ul>
 
@@ -80,12 +106,15 @@ function DisplayResults() {
 
                                     console.log(dataFilter.slice(0,5).length)
                                     return  (
-                                      <AnimatePresence>
+                                      <AnimatePresence key={country.ccn3}>
                                         <motion.li
+                                        className='country-item'
+                                        onClick={() =>{ return (selectCountry(country)) }}
                                         transition={{duration : 0.2}}
                                         animate={{ opacity: [0, 0.5, 0.3, 1, 0.5, 1] }}
                                         exit={{opacity : [1, 0.8, 0.5, 0.3, 0]}}
                                         style={
+
                                           // filtering the last item if the remainder notification isn't displayed
                                           // to correct some rect angles in the element.
                                           index === dataFilter.slice(0,5).length-1 && dataFilter.length - 5 < 5  ?
