@@ -108,3 +108,17 @@ img {
   left: clamp(75%, 77%, 80%);
   z-index: 4;
 }
+
+.ron-footer {
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  position: absolute;
+  top: 90vh;
+  color: rgb(0, 81, 255);
+}
+
+a {
+  text-decoration: none;
+  margin: 0 8px;
+}
