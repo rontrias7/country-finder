@@ -34,7 +34,7 @@ function DisplayResults() {
       function selectCountry(country) {
 
           //setCountries([countries.name.common[e.target.value]]);
-          console.log('clicked')
+          //console.log('clicked')
           console.log(country);
           setSearchedCountry(country.name.common);
 
